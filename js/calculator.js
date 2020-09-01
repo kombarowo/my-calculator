@@ -34,7 +34,7 @@ function onCalcBtnClick(e) {
 			break;
 		}
 		case 'reset': {
-			onResetClick();
+			onResetClick(btn, onSingleResetClick, onDoubleResetClick);
 			break;
 		}
 		case 'eval': {
@@ -74,4 +74,36 @@ function printAction(act) {
 			}
 		}
 	}
+}
+
+const setResetClicksToZero = () => {
+	myCalculator.$resetBtn.dataset.clicks = 0;
+};
+setResetClicksToZero();
+
+function onResetClick(btn, onSingle, onDouble) {
+	btn.dataset.clicks++
+
+	setTimeout(() => {
+		if (btn.dataset.clicks == 1) {
+			onSingle();
+			btn.dataset.clicks = 0;
+		}
+	}, 200);
+
+	if (btn.dataset.clicks == 2) {
+		btn.dataset.clicks = 0;
+		onDouble();
+	}
+}
+
+function onSingleResetClick() {
+	let exp = myCalculator.$expression.textContent
+	exp = exp.substr(0, exp.length - 1);
+	myCalculator.$expression.textContent = exp;
+}
+
+function onDoubleResetClick() {
+	myCalculator.$expression.textContent = '';
+	myCalculator.$result.textContent = 0;
 }
