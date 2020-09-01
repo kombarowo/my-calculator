@@ -23,11 +23,6 @@ function onCalcBtnClick(e) {
 	const btnType = btn.dataset.type;
 	const value = e.target.textContent;
 
-	// evaluate();
-	setTimeout(() => {
-		evaluate();
-	}, 0);
-
 	switch (btnType) {
 		case 'num': {
 			printNum(value);
@@ -50,6 +45,8 @@ function onCalcBtnClick(e) {
 			break;
 		}
 	}
+
+	evaluate();
 }
 
 function printNum(num) {
@@ -118,7 +115,6 @@ function evaluate() {
 		myCalculator.$result.textContent = +res.toFixed(5);
 	} catch (error) {
 		// myCalculator.$result.textContent = 'Ошибка..';
-		console.log(error);
 		return;
 	}
 }
@@ -126,4 +122,31 @@ function evaluate() {
 function evalExpression() {
 	myCalculator.$expression.textContent = myCalculator.$result.textContent;
 	myCalculator.$result.textContent = '0';
+}
+
+function printDot() {
+	let val = myCalculator.$expression.textContent;
+
+	if (val === 0) {
+		return;
+	} else if (!Number.isFinite(+val[val.length - 1])) {
+		return;
+	} else {
+		//Find the last num in expression and check includes "."
+		const chars = val.split('').reverse();
+		const a = 0;
+		const b = chars.findIndex(char => isAction(char));
+		const lastNum = (chars.slice(a, b)).reverse().join('');
+		if (!lastNum.includes('.')) {
+			myCalculator.$expression.textContent += '.';
+		}
+	}
+}
+
+function isAction(str) {
+	if (str === '+' || str === '/' || str === '*' || str === '-') {
+		return true;
+	} else {
+		return false;
+	}
 }
