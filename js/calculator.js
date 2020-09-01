@@ -118,3 +118,8 @@ function evaluate() {
 		return;
 	}
 }
+
+function evalExpression() {
+	myCalculator.$expression.textContent = myCalculator.$result.textContent;
+	myCalculator.$result.textContent = '0';
+}
