@@ -46,11 +46,11 @@ function onCalcBtnClick(e) {
 			break;
 		}
 	}
-};
+}
 
 function printNum(num) {
 	myCalculator.$expression.textContent += num;
-};
+}
 
 function printAction(act) {
 	let val = myCalculator.$expression.textContent
@@ -74,4 +74,4 @@ function printAction(act) {
 			}
 		}
 	}
-};
+}
