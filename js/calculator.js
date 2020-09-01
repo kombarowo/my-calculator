@@ -13,3 +13,37 @@ myCalculator.$actions = myCalculator.$el.querySelectorAll('[data-type="action"]'
 myCalculator.$resetBtn = myCalculator.$el.querySelector('[data-type="reset"]');
 myCalculator.$evalBtn = myCalculator.$el.querySelector('[data-type="eval"]');
 myCalculator.$dotBtn = myCalculator.$el.querySelector('[data-type="dot"]');
+
+//Events
+myCalculator.$btns.addEventListener('click', (e) => onCalcBtnClick(e));
+
+//Functions
+function onCalcBtnClick(e) {
+	const btn = e.target;
+	const btnType = btn.dataset.type;
+	const value = e.target.textContent;
+
+	switch (btnType) {
+		case 'num': {
+			printNumInExpression(value);
+			evaluate();
+			break;
+		}
+		case 'action': {
+			printActionInExpression(value);
+			break;
+		}
+		case 'reset': {
+			onResetClick();
+			break;
+		}
+		case 'eval': {
+			evalTheExpression();
+			break;
+		}
+		case 'dot': {
+			printDotInExpression();
+			break;
+		}
+	}
+};
