@@ -25,12 +25,12 @@ function onCalcBtnClick(e) {
 
 	switch (btnType) {
 		case 'num': {
-			printNumInExpression(value);
+			printNum(value);
 			evaluate();
 			break;
 		}
 		case 'action': {
-			printActionInExpression(value);
+			printAction(value);
 			break;
 		}
 		case 'reset': {
@@ -38,12 +38,40 @@ function onCalcBtnClick(e) {
 			break;
 		}
 		case 'eval': {
-			evalTheExpression();
+			evalExpression();
 			break;
 		}
 		case 'dot': {
-			printDotInExpression();
+			printDot();
 			break;
+		}
+	}
+};
+
+function printNum(num) {
+	myCalculator.$expression.textContent += num;
+};
+
+function printAction(act) {
+	let val = myCalculator.$expression.textContent
+	if (val.length === 0) {
+		return;
+	} else if (!Number.isFinite(+val[val.length - 1])) {
+		return;
+	} else {
+		switch (act) {
+			case 'x': {
+				myCalculator.$expression.textContent += '*';
+				break;
+			}
+			case '÷': {
+				myCalculator.$expression.textContent += '/';
+				break;
+			}
+			default: {
+				myCalculator.$expression.textContent += act;
+				break;
+			}
 		}
 	}
 };
