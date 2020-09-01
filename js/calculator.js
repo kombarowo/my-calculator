@@ -23,7 +23,10 @@ function onCalcBtnClick(e) {
 	const btnType = btn.dataset.type;
 	const value = e.target.textContent;
 
-	evaluate();
+	// evaluate();
+	setTimeout(() => {
+		evaluate();
+	}, 0);
 
 	switch (btnType) {
 		case 'num': {
@@ -115,6 +118,7 @@ function evaluate() {
 		myCalculator.$result.textContent = +res.toFixed(5);
 	} catch (error) {
 		// myCalculator.$result.textContent = 'Ошибка..';
+		console.log(error);
 		return;
 	}
 }
