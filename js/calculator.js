@@ -23,10 +23,11 @@ function onCalcBtnClick(e) {
 	const btnType = btn.dataset.type;
 	const value = e.target.textContent;
 
+	evaluate();
+
 	switch (btnType) {
 		case 'num': {
 			printNum(value);
-			evaluate();
 			break;
 		}
 		case 'action': {
@@ -106,4 +107,14 @@ function onSingleResetClick() {
 function onDoubleResetClick() {
 	myCalculator.$expression.textContent = '';
 	myCalculator.$result.textContent = 0;
+}
+
+function evaluate() {
+	try {
+		const res = eval(myCalculator.$expression.textContent);
+		myCalculator.$result.textContent = +res.toFixed(5);
+	} catch (error) {
+		// myCalculator.$result.textContent = 'Ошибка..';
+		return;
+	}
 }
