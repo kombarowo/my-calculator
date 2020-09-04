@@ -125,7 +125,7 @@ function evaluate() {
 			return;
 		}
 		try {
-			myCalculator.$result.textContent = eval(res.substring(0, res.length - 1));
+			myCalculator.$result.textContent = +eval(res.substring(0, res.length - 1)).toFixed(5);
 		} catch (e) { // if expression is incorrect by other way, like "00000000"
 			return;
 		}
