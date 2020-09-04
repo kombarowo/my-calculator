@@ -101,21 +101,34 @@ function onResetClick(btn, onSingle, onDouble) {
 function onSingleResetClick() {
 	let exp = myCalculator.$expression.textContent
 	exp = exp.substr(0, exp.length - 1);
+	if (exp.length === 0) {
+		myCalculator.$result.textContent = '0';
+	}
 	myCalculator.$expression.textContent = exp;
+
+	evaluate();
 }
 
 function onDoubleResetClick() {
 	myCalculator.$expression.textContent = '';
-	myCalculator.$result.textContent = 0;
+	myCalculator.$result.textContent = '0';
 }
 
 function evaluate() {
 	try {
-		const res = eval(myCalculator.$expression.textContent);
-		myCalculator.$result.textContent = +res.toFixed(5);
-	} catch (error) {
-		// myCalculator.$result.textContent = 'Ошибка..';
-		return;
+		const result = eval(myCalculator.$expression.textContent);
+		myCalculator.$result.textContent = +result.toFixed(5);
+	} catch (e) { // if expression is incorrect by ended with action char(+,-,*,/) or expression is empty
+		const res = myCalculator.$expression.textContent;
+
+		if (res === '') {
+			return;
+		}
+		try {
+			myCalculator.$result.textContent = eval(res.substring(0, res.length - 1));
+		} catch (e) { // if expression is incorrect by other way, like "00000000"
+			return;
+		}
 	}
 }
 
