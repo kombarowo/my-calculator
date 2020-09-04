@@ -119,52 +119,56 @@ body {
 }
 
 /* Adaptive */
-@media (max-width: 339px) {
-	.wrapper {
-		padding: 0 10px;
-	}
-}
-
 @media (max-width: 460px) {
 	.calculator {
 		width: 300px;
 		padding: 25px;
+		width: calc(100vw - 40px);
+		padding: calc((100vw - 40px)/12);
 	}
 
 	.calculator__screen {
 		height: 110px;
 		padding: 15px;
+		height: calc((100vw - 40px)/3);
 	}
 
 	.calculator__expression {
 		height: 25px;
 		font-size: 16px;
+		height: calc((100vw - 40px)/12);
+		font-size: 5vw;
 	}
 
 	.calculator__result {
 		height: 40px;
-		font-size: 30px;
+		font-size: calc((100vw - 40px)/10);
+		height: calc((100vw - 40px)/6.5);
 	}
 
 	.calculator__buttons {
-		padding: 14px;
-		height: 300px;
+		height: calc(100vw - 40px);
+		height: 100vw;
+		padding: calc((100vw - 40px)/);
 	}
 
 	.calculator__button {
 		width: 50px;
 		height: 50px;
 		font-size: 25px;
+		width: calc((100vw - 40px)/6);
+		height: calc((100vw - 40px)/6);
+		font-size: calc((100vw - 40px)/12);
 	}
 
 	.calculator__button--3b {
-		width: calc(50px * 3 + 5.333px * 2);
-		border-radius: 50px;
+		width: calc((100vw - 40px)/2);
+		border-radius: calc((100vw - 40px)/6);
 	}
 
 	.calculator__button--2b {
-		width: calc(50px * 2 + 5.333px);
-		border-radius: 50px;
+		width: calc((100vw - 40px)/3);
+		border-radius: calc((100vw - 40px)/6);
 	}
 }
 
